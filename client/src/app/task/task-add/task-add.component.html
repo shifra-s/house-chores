@@ -1,0 +1,21 @@
+<h2 class="col-4">Add Task</h2>
+
+<div>
+  <form class="col-4" #myForm="ngForm">
+    <div class="form-group">
+      <label for="task">Task</label>
+      <input [(ngModel)]="taskModel.name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Task">
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input [(ngModel)]="taskModel.date" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Add Date">
+    </div>
+    <div class="form-group" *ngIf='householdMemberModel'>
+      <label for="householdMemberModel">Select Household Member Responsible</label>
+      <select class="form-control" [(ngModel)]='taskModel.id_household_member' [ngModelOptions]="{standalone: true}" required>
+        <option *ngFor='let member of householdMemberModel' value='{{member.id}}'>{{member.name}}</option>
+      </select>
+    </div>
+    <button (click)="addTask()" type="button" class="btn btn-primary">Add Task</button>
+  </form>
+  </div>

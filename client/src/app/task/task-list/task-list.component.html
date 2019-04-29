@@ -1,0 +1,18 @@
+<h2 class='col-4'>To Do List</h2>
+
+<table class='table col-8' *ngIf='tasks'>
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody *ngFor='let task of tasks'>
+    <tr>
+      <td>{{task.name}}</td>
+      <td>{{task.date}}</td>
+      <td>{{task.id_household_member}}</td>
+    </tr>
+  </tbody>
+</table>
