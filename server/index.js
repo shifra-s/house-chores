@@ -29,7 +29,6 @@ connection.connect(function (e, d) {
 //get list of household members
 app.get('/householdmembers', function (req, res) {
     let sql = "SELECT * FROM household_members"
-    console.log(sql);
     connection.query(sql, function (err, result, fields) {
         if (err) throw err;
         res.send(result);
@@ -42,10 +41,8 @@ app.get('/householdmembers', function (req, res) {
 //get list of chores
 app.get('/tasklist', function (req, res) {
 let sql= "SELECT `task_list`.id, `task_list`.`name`, `task_list`.`date`, household_members.name as `id_household_member` FROM `task_list` inner join household_members on household_members.id = `task_list`.`id_household_member`"
-    console.log(sql);
     connection.query(sql, function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
         res.send(result);
     })
 });
@@ -54,7 +51,6 @@ let sql= "SELECT `task_list`.id, `task_list`.`name`, `task_list`.`date`, househo
 app.post('/addtask', function (req, res) {
     let post = req.body;
 
-    console.log(post)
     let sql ="INSERT INTO task_list SET ?"
     connection.query(sql, post, function (err, result) {
         if (err) {
@@ -67,5 +63,4 @@ app.post('/addtask', function (req, res) {
 });
 
 app.listen(PORT, () => {
-    console.log('listening on ',PORT);
 });
