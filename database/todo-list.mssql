@@ -1,0 +1,115 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Apr 29, 2019 at 09:21 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `todo-list`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `household_members`
+--
+
+CREATE TABLE `household_members` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `nickname` varchar(20) COLLATE utf8_bin NOT NULL,
+  `description` varchar(50) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `household_members`
+--
+
+INSERT INTO `household_members` (`id`, `name`, `nickname`, `description`) VALUES
+(1, 'Shifra', 'Shif', 'daughter'),
+(2, 'David', 'Dave', 'brother');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_list`
+--
+
+CREATE TABLE `task_list` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `date` varchar(20) COLLATE utf8_bin NOT NULL,
+  `id_household_member` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `task_list`
+--
+
+INSERT INTO `task_list` (`id`, `name`, `date`, `id_household_member`) VALUES
+(1, 'clean room', '05/20/2019', 1),
+(2, 'do the laundry', '07/25/2019', 2),
+(3, 'wash the dishes', '07/07/2019', 2),
+(4, 'mop floor', '07/07/2019', 2);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `household_members`
+--
+ALTER TABLE `household_members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `task_list`
+--
+ALTER TABLE `task_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_household_member` (`id_household_member`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `household_members`
+--
+ALTER TABLE `household_members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `task_list`
+--
+ALTER TABLE `task_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `task_list`
+--
+ALTER TABLE `task_list`
+  ADD CONSTRAINT `task_list_ibfk_1` FOREIGN KEY (`id_household_member`) REFERENCES `task_list` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
